@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins='*')
 
 
 def scrape_jobs_from_website(url):
@@ -61,12 +63,12 @@ def scrape_jobs_cse(url):
     ) if application_close_date else 'N/A'
     logo_url_text = logo_url['src'] if logo_url else 'N/A'
     job_data = {
-        'Job Title': job_title_text,
-        'Company Name': company_name_text,
+        'Job_Title': job_title_text,
+        'Company_Name': company_name_text,
         'Location': location_text,
-        'Job Description': job_description_text,
-        'Application Close Date': application_close_date_text,
-        'Logo URL': logo_url_text
+        'Job_Description': job_description_text,
+        'Application_Close_Date': application_close_date_text,
+        'Logo_URL': logo_url_text
     }
 
     # Append the dictionary to the list
